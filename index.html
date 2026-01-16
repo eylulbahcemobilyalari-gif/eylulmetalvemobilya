@@ -7,8 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #1A4D2E; /* Eylül Metal Yeşili */
-            --accent: #D4A373;  /* Ahşap/Gold Tonu */
+            --primary: #1A4D2E;
+            --accent: #D4A373;
             --bg: #F5F7F5;
             --text: #333;
         }
@@ -28,13 +28,13 @@
         }
 
         .hero {
-            height: 350px;
+            height: 300px;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('resimler/paris.jpg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white; padding: 20px;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero h1 { font-size: 2.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
         .filters { padding: 30px 2%; text-align: center; background: white; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
         .btn {
@@ -47,19 +47,18 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
 
         .card {
-            background: white; border-radius: 10px; overflow: hidden;
+            background: white; border-radius: 12px; overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
             display: flex; flex-direction: column; cursor: pointer;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .img-wrap { height: 260px; position: relative; overflow: hidden; background: #eee; }
-        .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .img-wrap img { transform: scale(1.05); }
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
         .badge { position: absolute; top: 10px; right: 10px; background: var(--accent); color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.7rem; font-weight: bold; }
         .info { padding: 20px; }
         .title { color: var(--primary); margin-bottom: 5px; font-size: 1.2rem; }
 
-        /* MODAL (DETAY PENCERESİ) */
+        /* MODAL */
         .modal {
             display: none; position: fixed; z-index: 3000;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -69,29 +68,27 @@
         .modal-content {
             background: white; width: 100%; max-width: 1000px; border-radius: 20px;
             display: flex; flex-direction: row; overflow: hidden; position: relative;
-            max-height: 90vh; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-height: 90vh;
         }
         .modal-img { flex: 1.2; background: #000; display: flex; align-items: center; }
         .modal-img img { width: 100%; height: 100%; object-fit: contain; }
         .modal-info { flex: 1; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; }
-        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; z-index: 10; color: #333; }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: #333; z-index: 10; }
         
         .specs-list { margin: 25px 0; list-style: none; }
         .specs-list li { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; font-size: 1rem; color: #444; }
-        .specs-list b { color: var(--primary); font-weight: 700; }
+        .specs-list b { color: var(--primary); }
 
         .modal-whatsapp {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: #25D366; color: white; padding: 18px;
             text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem;
-            margin-top: auto; transition: 0.3s;
+            margin-top: auto;
         }
-        .modal-whatsapp:hover { background: #128C7E; transform: scale(1.02); }
 
         @media (max-width: 900px) {
             .modal-content { flex-direction: column; }
             .modal-img { height: 300px; }
-            .modal-info { padding: 25px; }
             .hero h1 { font-size: 2.2rem; }
         }
     </style>
@@ -104,10 +101,7 @@
 </header>
 
 <section class="hero">
-    <div>
-        <h1>Eylül Metal & Mobilya</h1>
-        <p>Detayları görmek için ürünün üzerine tıklayın</p>
-    </div>
+    <h1>Eylül Metal & Mobilya</h1>
 </section>
 
 <div class="filters">
@@ -127,92 +121,44 @@
 <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-img">
-            <img id="modalImg" src="">
-        </div>
+        <div class="modal-img"><img id="modalImg" src=""></div>
         <div class="modal-info">
             <h2 id="modalTitle" style="color:var(--primary); margin-bottom:15px; font-size: 1.8rem;"></h2>
-            <p id="modalDesc" style="color:#666; line-height:1.6; font-size: 1rem;"></p>
-            
+            <p id="modalDesc" style="color:#666; line-height:1.6;"></p>
             <ul class="specs-list" id="modalSpecs"></ul>
-
             <div id="modalCode" style="font-size:0.9rem; color:#999; margin-bottom:20px; font-weight: bold;"></div>
-            
-            <a id="modalWa" href="" target="_blank" class="modal-whatsapp">
-                <i class="fab fa-whatsapp"></i> Fiyat Bilgisi Al
-            </a>
+            <a id="modalWa" href="" target="_blank" class="modal-whatsapp"><i class="fab fa-whatsapp"></i> Fiyat Bilgisi Al</a>
         </div>
     </div>
 </div>
 
 <script>
     const products = [
-        // --- BAHÇE MOBİLYA ---
-        { 
-            cat:'bahce', title:'Paris Masa Takımı', code:'Okra OKT-17', img:'resimler/paris.jpg', 
-            desc:'Modern hatları ve dayanıklı yapısıyla bahçenize şıklık katar.',
-            specs: [{k:'Malzeme', v:'Paslanmaz Metal'}, {k:'Ölçü', v:'90x160 cm'}, {k:'Özellik', v:'Suya dayanıklı minder'}]
-        },
-        { 
-            cat:'bahce', title:'Eyfel Kütük Masa', code:'Okra OKT-21', img:'resimler/eyfel.jpg', 
-            desc:'Doğal kütük dokusuyla bahçenizde sıcak bir atmosfer yaratır.',
-            specs: [{k:'Yüzey', v:'Doğal Ahşap'}, {k:'Ayak', v:'Statik Boyalı Metal'}]
-        },
-        { 
-            cat:'bahce', title:'Oslo Bar Seti', code:'Okra OKT-22', img:'resimler/oslo.jpg', 
-            desc:'Keyifli akşamlar için şık ve ergonomik bar seti.',
-            specs: [{k:'Set İçeriği', v:'1 Masa + 2 Tabure'}, {k:'Yükseklik', v:'110 cm'}]
-        },
+        // BAHÇE
+        { cat:'bahce', title:'Paris Masa Takımı', code:'Okra OKT-17', img:'resimler/paris.jpg', desc:'Modern bahçe tasarımı.', specs: [{k:'Ölçü', v:'90x160 cm'}, {k:'İskelet', v:'Metal'}] },
+        { cat:'bahce', title:'Eyfel Kütük Masa', code:'Okra OKT-21', img:'resimler/eyfel.jpg', desc:'Doğal kütük dokusu.', specs: [{k:'Yüzey', v:'Meşe'}, {k:'Ayak', v:'Metal'}] },
+        { cat:'bahce', title:'Oslo Bar Seti', code:'Okra OKT-22', img:'resimler/oslo.jpg', desc:'Şık bar seti.', specs: [{k:'Masa', v:'Yüksek'}, {k:'Adet', v:'2 Tabure'}] },
+        { cat:'bahce', title:'Klasik Bahçe Seti', code:'Okra OKT-01', img:'resimler/klasik.jpg', desc:'Klasik tasarım.', specs: [{k:'Malzeme', v:'Plastik/Metal'}] },
 
-        // --- KOLTUK TAKIMLARI ---
-        { 
-            cat:'koltuk', title:'Bohem Koltuk Takımı', code:'Agah BOHEM', img:'resimler/bohem.jpg', 
-            desc:'Evinizin konforunu zirveye taşıyacak bohem tasarım.',
-            specs: [{k:'Kumaş', v:'İthal Dokuma'}, {k:'Sünger', v:'32 Dansite Soft'}]
-        },
-        { 
-            cat:'koltuk', title:'Bohem Berjer', code:'Agah TEKLİ', img:'resimler/tekli.jpg', 
-            desc:'Geniş oturumuyla kitap okuma köşelerinizin vazgeçilmezi.',
-            specs: [{k:'Ayak', v:'Gürgen Ahşap'}, {k:'Tip', v:'Tekli Döner Ayak'}]
-        },
+        // KOLTUK
+        { cat:'koltuk', title:'Bohem Koltuk Takımı', code:'Agah BOHEM', img:'resimler/bohem.jpg', desc:'Konforlu 3+3+1+1 takımı.', specs: [{k:'Sünger', v:'32 Dansite'}, {k:'Kumaş', v:'Leke Tutmaz'}] },
+        { cat:'koltuk', title:'Bohem Berjer', code:'Agah TEKLİ', img:'resimler/tekli.jpg', desc:'Rahat tekli koltuk.', specs: [{k:'Ayak', v:'Ahşap'}] },
+        { cat:'koltuk', title:'Chester Lüks Takım', code:'Agah CHESTER', img:'resimler/chester.jpg', desc:'Kapitone işçilikli lüks takım.', specs: [{k:'Tarz', v:'Klasik Chester'}] },
 
-        // --- KORKULUK ---
-        { 
-            cat:'korkuluk', title:'Alüminyum Korkuluk', code:'KRL-01', img:'resimler/korkuluk1.jpg', 
-            desc:'Balkon ve merdivenler için modern kare profil sistemleri.',
-            specs: [{k:'Malzeme', v:'Alüminyum'}, {k:'Montaj', v:'Dahil'}]
-        },
-        { 
-            cat:'korkuluk', title:'Camlı Korkuluk', code:'KRL-02', img:'resimler/korkuluk2.jpg', 
-            desc:'Kesintisiz manzara için temperli camlı sistemler.',
-            specs: [{k:'Cam', v:'8mm Temperli'}, {k:'Renk', v:'Şeffaf/Füme'}]
-        },
+        // KORKULUK
+        { cat:'korkuluk', title:'Alüminyum Korkuluk', code:'KRL-01', img:'resimler/korkuluk1.jpg', desc:'Kare profil sistemleri.', specs: [{k:'Tip', v:'Kare'}, {k:'Malzeme', v:'Alüminyum'}] },
+        { cat:'korkuluk', title:'Camlı Korkuluk', code:'KRL-02', img:'resimler/korkuluk2.jpg', desc:'Temperli camlı sistem.', specs: [{k:'Cam', v:'8mm Temper'}] },
 
-        // --- MASA SANDALYE ---
-        { 
-            cat:'masa', title:'Mutfak Masa Seti', code:'MS-01', img:'resimler/masa1.jpg', 
-            desc:'Kısıtlı alanlar için fonksiyonel ve şık mutfak çözümleri.',
-            specs: [{k:'Masa', v:'MDF Lam'}, {k:'Sandalye', v:'Metal Ayak'}]
-        },
+        // MASA SANDALYE
+        { cat:'masa', title:'Mutfak Masa Seti', code:'MS-01', img:'resimler/masa1.jpg', desc:'Fonksiyonel mutfak masası.', specs: [{k:'Masa', v:'Katlanır'}] },
 
-        // --- BAZA & YATAK ---
-        { 
-            cat:'baza', title:'Baza Başlık Seti', code:'BZ-01', img:'resimler/baza1.jpg', 
-            desc:'Geniş iç hacimli sandıklı baza ve dekoratif başlık.',
-            specs: [{k:'İskelet', v:'Çelik Profil'}, {k:'Amortisör', v:'Emniyet Kilitli'}]
-        },
-        { 
-            cat:'baza', title:'Plus Yatak', code:'Agah PLUS', img:'resimler/plus.jpg', 
-            desc:'Vücut ergonomisine uyumlu tam ortopedik yatak.',
-            specs: [{k:'Sertlik', v:'Orta Sert'}, {k:'Yay', v:'Paket Yay Sistemi'}]
-        },
+        // BAZA & YATAK
+        { cat:'baza', title:'Baza Başlık Seti', code:'BZ-01', img:'resimler/baza1.jpg', desc:'Sandıklı sağlam baza.', specs: [{k:'İç Hacim', v:'Geniş'}, {k:'Emniyet', v:'Kilitli Amortisör'}] },
+        { cat:'baza', title:'Plus Yatak', code:'Agah PLUS', img:'resimler/plus.jpg', desc:'Ortopedik yatak.', specs: [{k:'Yay', v:'Paket Yay'}] },
+        { cat:'baza', title:'Aqua Yatak', code:'Agah AQUA', img:'resimler/aqua.jpg', desc:'Yazlık-kışlık özellikli yatak.', specs: [{k:'Sertlik', v:'Yumuşak'}] },
 
-        // --- GARDROP (GERİ GELDİ!) ---
-        { 
-            cat:'dolap', title:'Sürgülü Gardrop', code:'GD-01', img:'resimler/dolap1.jpg', 
-            desc:'Aynalı kapakları ve geniş raf düzeniyle yatak odanıza düzen getirir.',
-            specs: [{k:'Genişlik', v:'220 cm'}, {k:'Mekanizma', v:'Frenli Sürgü'}, {k:'Raf', v:'Ayarlanabilir'}]
-        }
+        // GARDROP
+        { cat:'dolap', title:'Sürgülü Gardrop', code:'GD-01', img:'resimler/dolap1.jpg', desc:'Geniş iç hacimli dolap.', specs: [{k:'Kapak', v:'Sürgülü/Aynalı'}] }
     ];
 
     const gallery = document.getElementById('gallery');
@@ -225,21 +171,17 @@
 
         const filtered = key === 'all' ? products : products.filter(p => p.cat === key);
 
-        if(filtered.length === 0) {
-            gallery.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:40px; color:#666;">Bu kategoride yakında yeni ürünler eklenecek!</p>';
-            return;
-        }
-
         filtered.forEach((p) => {
-            let catLabel = p.cat.toUpperCase();
-            if(p.cat==='bahce') catLabel='BAHÇE';
-            if(p.cat==='koltuk') catLabel='KOLTUK';
-            if(p.cat==='dolap') catLabel='GARDROP';
+            let label = p.cat.toUpperCase();
+            if(p.cat==='bahce') label='BAHÇE';
+            if(p.cat==='koltuk') label='KOLTUK';
+            if(p.cat==='dolap') label='GARDROP';
+            if(p.cat==='baza') label='BAZA';
 
             gallery.innerHTML += `
             <div class="card" onclick="openModal(${products.indexOf(p)})">
                 <div class="img-wrap">
-                    <span class="badge">${catLabel}</span>
+                    <span class="badge">${label}</span>
                     <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=FOTOĞRAF+YOK'">
                 </div>
                 <div class="info">
@@ -256,20 +198,13 @@
         document.getElementById('modalTitle').innerText = p.title;
         document.getElementById('modalDesc').innerText = p.desc;
         document.getElementById('modalCode').innerText = "STOK KODU: " + p.code;
-        
         const specsList = document.getElementById('modalSpecs');
         specsList.innerHTML = '';
-        if(p.specs) {
-            p.specs.forEach(s => {
-                specsList.innerHTML += `<li><b>${s.k}:</b> ${s.v}</li>`;
-            });
-        }
-
-        const waText = `Merhaba, ${p.title} (${p.code}) modeli hakkında fiyat ve teslimat bilgisi almak istiyorum.`;
+        if(p.specs) p.specs.forEach(s => { specsList.innerHTML += `<li><b>${s.k}:</b> ${s.v}</li>`; });
+        const waText = `Merhaba, ${p.title} (${p.code}) fiyatı nedir?`;
         document.getElementById('modalWa').href = `https://wa.me/905555555555?text=${encodeURIComponent(waText)}`;
-
         document.getElementById('productModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Arka plan kaymasın
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
@@ -277,10 +212,7 @@
         document.body.style.overflow = 'auto';
     }
 
-    window.onclick = function(e) {
-        if (e.target == document.getElementById('productModal')) closeModal();
-    }
-
+    window.onclick = function(e) { if (e.target == document.getElementById('productModal')) closeModal(); }
     filter('all');
 </script>
 
