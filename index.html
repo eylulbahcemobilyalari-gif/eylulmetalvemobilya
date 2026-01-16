@@ -187,8 +187,11 @@
         const specsList = document.getElementById('modalSpecs');
         specsList.innerHTML = '';
         if(p.specs) p.specs.forEach(s => { specsList.innerHTML += `<li><b>${s.k}:</b> ${s.v}</li>`; });
+        
+        // --- BURASI KRİTİK: Modal içindeki numara güncellendi ---
         const waText = `Merhaba, ${p.title} (${p.code}) hakkında bilgi alabilir miyim?`;
         document.getElementById('modalWa').href = `https://wa.me/905061811367?text=${encodeURIComponent(waText)}`;
+        
         document.getElementById('productModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
