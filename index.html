@@ -15,7 +15,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: var(--bg); color: var(--text); }
 
-        /* HEADER */
         header {
             background: white; padding: 1rem 5%;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
@@ -28,72 +27,69 @@
             text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 5px;
         }
 
-        /* HERO */
         .hero {
-            height: 450px;
-            /* Arka plan resmi - İlk başta Paris takımı görünsün */
+            height: 350px;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('resimler/paris.jpg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white; padding: 20px;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 5px black; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
 
-        /* KATEGORİ BUTONLARI */
         .filters { padding: 30px 2%; text-align: center; background: white; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
         .btn {
             padding: 10px 20px; border: 1px solid #ddd; background: white;
-            border-radius: 25px; cursor: pointer; font-weight: 600; color: #555;
-            transition: 0.3s;
+            border-radius: 25px; cursor: pointer; font-weight: 600; transition: 0.3s;
         }
-        .btn:hover, .btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* GRID */
         .container { max-width: 1300px; margin: 30px auto; padding: 0 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
 
         .card {
             background: white; border-radius: 10px; overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
-            display: flex; flex-direction: column;
+            display: flex; flex-direction: column; cursor: pointer;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); }
+        .img-wrap { height: 260px; position: relative; overflow: hidden; }
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .badge { position: absolute; top: 10px; right: 10px; background: var(--accent); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: bold; }
+        .info { padding: 20px; }
+        .title { color: var(--primary); margin-bottom: 5px; }
 
-        .img-wrap { height: 260px; overflow: hidden; position: relative; cursor: pointer; background: #eee; }
-        .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .img-wrap img { transform: scale(1.1); }
-        
-        .badge {
-            position: absolute; top: 10px; right: 10px;
-            background: var(--accent); color: white;
-            padding: 5px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-        }
-
-        .info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .title { font-size: 1.3rem; color: var(--primary); margin-bottom: 5px; }
-        .desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; flex-grow: 1; }
-        .code { font-size: 0.8rem; color: #999; border-top: 1px solid #eee; padding-top: 10px; }
-
-        .whatsapp-card {
-            display: block; background: #f0fdf4; color: #15803d;
-            text-align: center; padding: 10px; margin-top: 10px;
-            text-decoration: none; border-radius: 5px; font-weight: bold;
-            border: 1px solid #bbf7d0; transition: 0.3s;
-        }
-        .whatsapp-card:hover { background: #25D366; color: white; border-color: #25D366; }
-
-        /* LIGHTBOX */
-        .lightbox {
-            display: none; position: fixed; z-index: 2000;
+        /* YENİ ÜRÜN DETAY MODAL */
+        .modal {
+            display: none; position: fixed; z-index: 3000;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center; align-items: center; flex-direction: column;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            justify-content: center; align-items: center; padding: 20px;
         }
-        .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 5px; }
-        .close-lb { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+        .modal-content {
+            background: white; width: 100%; max-width: 900px; border-radius: 15px;
+            display: flex; flex-direction: row; overflow: hidden; position: relative;
+            max-height: 90vh;
+        }
+        .modal-img { flex: 1; background: #eee; }
+        .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-info { flex: 1; padding: 40px; overflow-y: auto; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; z-index: 10; }
+        
+        .specs-list { margin: 20px 0; list-style: none; }
+        .specs-list li { margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .specs-list b { color: var(--primary); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } }
+        .modal-whatsapp {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: white; padding: 15px;
+            text-decoration: none; border-radius: 10px; font-weight: bold; margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content { flex-direction: column; }
+            .modal-img { height: 250px; }
+            .hero h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -106,7 +102,7 @@
 <section class="hero">
     <div>
         <h1>Eylül Metal & Mobilya</h1>
-        <p>Bahçe, Balkon, Korkuluk ve İç Mekan Çözümleri</p>
+        <p>Ürün Detayları ve Teknik Özellikler İçin Ürünlere Tıklayın</p>
     </div>
 </section>
 
@@ -115,96 +111,143 @@
     <button class="btn" onclick="filter('bahce')">Bahçe Mobilya</button>
     <button class="btn" onclick="filter('koltuk')">Koltuk Takımları</button>
     <button class="btn" onclick="filter('korkuluk')">Korkuluk</button>
-    <button class="btn" onclick="filter('masa')">Masa Sandalye</button>
     <button class="btn" onclick="filter('baza')">Baza & Yatak</button>
-    <button class="btn" onclick="filter('dolap')">Gardrop</button>
 </div>
 
 <div class="container">
     <div class="grid" id="gallery"></div>
 </div>
 
-<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <span class="close-lb">&times;</span>
-    <img id="lb-img" src="">
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-img">
+            <img id="modalImg" src="">
+        </div>
+        <div class="modal-info">
+            <h2 id="modalTitle" style="color:var(--primary); margin-bottom:10px;"></h2>
+            <p id="modalDesc" style="color:#666; line-height:1.6;"></p>
+            
+            <ul class="specs-list" id="modalSpecs">
+                </ul>
+
+            <div id="modalCode" style="font-size:0.8rem; color:#999; margin-bottom:20px;"></div>
+            
+            <a id="modalWa" href="" target="_blank" class="modal-whatsapp">
+                <i class="fab fa-whatsapp"></i> Bu Ürün İçin Fiyat Al
+            </a>
+        </div>
+    </div>
 </div>
 
 <script>
-    // ÜRÜN LİSTESİ
-    // Resim isimlerinin (paris.jpg vb.) resimler klasöründekiyle aynı olduğundan emin ol!
-    
+    // ÜRÜN VERİLERİ (Burası senin dükkanın arşivi gibi)
     const products = [
-        // --- 1. BAHÇE MOBİLYA (Okra) ---
-        { cat:'bahce', title:'Paris Masa Takımı', code:'Okra OKT-17', img:'resimler/paris.jpg', desc:'Modern tasarım, geniş bahçe masası ve sandalyeleri.' },
-        { cat:'bahce', title:'Eyfel Kütük Masa', code:'Okra OKT-21', img:'resimler/eyfel.jpg', desc:'Doğal kütük görünümü, sağlam ayak yapısı.' },
-        { cat:'bahce', title:'Oslo Bar Seti', code:'Okra OKT-22', img:'resimler/oslo.jpg', desc:'Yüksek bar masası ve tabureleri.' },
-        { cat:'bahce', title:'Klasik Bahçe Seti', code:'Okra OKT-01', img:'resimler/klasik.jpg', desc:'Klasik model masa sandalye takımı.' },
-
-        // --- 2. KOLTUK TAKIMLARI (Agah) ---
-        { cat:'koltuk', title:'Bohem Koltuk Takımı', code:'Agah BOHEM', img:'resimler/bohem.jpg', desc:'3+3+1+1 Konforlu oturma grubu.' },
-        { cat:'koltuk', title:'Bohem Berjer', code:'Agah TEKLİ', img:'resimler/tekli.jpg', desc:'Geniş ve rahat tekli koltuk.' },
-        
-        // --- 3. KORKULUK SİSTEMLERİ ---
-        { cat:'korkuluk', title:'Alüminyum Korkuluk', code:'KRL-01', img:'resimler/korkuluk1.jpg', desc:'Balkon ve merdivenler için kare profil sistem.' },
-        { cat:'korkuluk', title:'Camlı Korkuluk', code:'KRL-02', img:'resimler/korkuluk2.jpg', desc:'Modern camlı, paslanmaz korkuluk sistemi.' },
-
-        // --- 4. MASA SANDALYE ---
-        { cat:'masa', title:'Mutfak Masa Seti', code:'MS-01', img:'resimler/masa1.jpg', desc:'Mutfak ve balkon için masa sandalye takımı.' },
-
-        // --- 5. BAZA & YATAK ---
-        { cat:'baza', title:'Baza Başlık Seti', code:'BZ-01', img:'resimler/baza1.jpg', desc:'Sandıklı baza ve şık başlık.' },
-        { cat:'baza', title:'Plus Yatak', code:'Agah PLUS', img:'resimler/plus.jpg', desc:'Tam ortopedik destek süngerli yatak.' },
-
-        // --- 6. GARDROP ---
-        { cat:'dolap', title:'Sürgülü Gardrop', code:'GD-01', img:'resimler/dolap1.jpg', desc:'Aynalı, sürgülü kapak, geniş hacimli dolap.' }
+        { 
+            cat:'bahce', 
+            title:'Paris Masa Takımı', 
+            code:'Okra OKT-17', 
+            img:'resimler/paris.jpg', 
+            desc:'Paris serisi, hem modern hem de dayanıklı yapısıyla bahçenizin yıldızı olacak. Hava koşullarına tam dayanıklı özel fırın boya kullanılmıştır.',
+            specs: [
+                {k:'Malzeme', v:'Alüminyum İskelet'},
+                {k:'Masa Ölçüsü', v:'90x160 cm (Açılabilir)'},
+                {k:'Kumaş', v:'Su İtici Dış Mekan Kumaşı'},
+                {k:'Renk', v:'Antrasit / Ceviz Seçenekli'}
+            ]
+        },
+        { 
+            cat:'koltuk', 
+            title:'Bohem Koltuk Takımı', 
+            code:'Agah BOHEM', 
+            img:'resimler/bohem.jpg', 
+            desc:'Evinize bohem bir hava katan, konforun ön planda olduğu 3+3+1+1 takımı.',
+            specs: [
+                {k:'Sünger', v:'32 Dansite Soft Sünger'},
+                {k:'İskelet', v:'Fırınlanmış Gürgen Ağacı'},
+                {k:'Ayak', v:'Ceviz Kaplama Ahşap Ayak'}
+            ]
+        },
+        { 
+            cat:'korkuluk', 
+            title:'Alüminyum Korkuluk', 
+            code:'KRL-01', 
+            img:'resimler/korkuluk1.jpg', 
+            desc:'Paslanmaz alüminyum kare profil sistemleri ile güvenli ve estetik balkonlar.',
+            specs: [
+                {k:'Tip', v:'Kare Profil'},
+                {k:'Malzeme', v:'Eloksal Alüminyum'},
+                {k:'Montaj', v:'Ücretsiz Keşif ve Montaj'}
+            ]
+        }
+        // Diğer ürünlerini de bu formatta ekleyebilirsin
     ];
 
     const gallery = document.getElementById('gallery');
     
     function filter(key) {
         gallery.innerHTML = '';
-        document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        const btns = document.querySelectorAll('.btn');
+        btns.forEach(b => b.classList.remove('active'));
+        if(event) event.target.classList.add('active');
 
         const filtered = key === 'all' ? products : products.filter(p => p.cat === key);
 
-        if(filtered.length === 0) {
-            gallery.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:20px; color:#666;">Bu kategoride henüz ürün fotoğrafı eklenmedi.</p>';
-            return;
-        }
-
-        filtered.forEach(p => {
+        filtered.forEach((p, index) => {
             let catName = p.cat.toUpperCase();
-            // Kategori ismini güzelleştirme
-            if(p.cat==='bahce') catName='BAHÇE';
-            if(p.cat==='koltuk') catName='KOLTUK';
-            
             gallery.innerHTML += `
-            <div class="card">
-                <div class="img-wrap" onclick="showLb('${p.img}')">
+            <div class="card" onclick="openModal(${products.indexOf(p)})">
+                <div class="img-wrap">
                     <span class="badge">${catName}</span>
                     <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=FOTOĞRAF+YOK'">
                 </div>
                 <div class="info">
                     <h3 class="title">${p.title}</h3>
-                    <p class="desc">${p.desc}</p>
-                    <div class="code"><i class="fas fa-barcode"></i> ${p.code}</div>
-                    <a href="https://wa.me/905555555555?text=Merhaba, ${p.title} (${p.code}) fiyatı nedir?" target="_blank" class="whatsapp-card">
-                        <i class="fab fa-whatsapp"></i> Fiyat Sor
-                    </a>
+                    <div style="font-size:0.8rem; color:#999;">${p.code}</div>
                 </div>
             </div>`;
         });
     }
 
-    function showLb(src) {
-        document.getElementById('lightbox').style.display = 'flex';
-        document.getElementById('lb-img').src = src;
+    function openModal(idx) {
+        const p = products[idx];
+        document.getElementById('modalImg').src = p.img;
+        document.getElementById('modalTitle').innerText = p.title;
+        document.getElementById('modalDesc').innerText = p.desc;
+        document.getElementById('modalCode').innerText = "Ürün Kodu: " + p.code;
+        
+        // Teknik özellikleri doldur
+        const specsList = document.getElementById('modalSpecs');
+        specsList.innerHTML = '';
+        if(p.specs) {
+            p.specs.forEach(s => {
+                specsList.innerHTML += `<li><b>${s.k}:</b> ${s.v}</li>`;
+            });
+        }
+
+        // WhatsApp linkini güncelle
+        const waText = `Merhaba, ${p.title} (${p.code}) hakkında detaylı fiyat bilgisi almak istiyorum.`;
+        document.getElementById('modalWa').href = `https://wa.me/905555555555?text=${encodeURIComponent(waText)}`;
+
+        document.getElementById('productModal').style.display = 'flex';
     }
 
-    // Başlangıç
-    document.querySelector('.filters button').click(); 
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    // Modal dışına tıklayınca kapat
+    window.onclick = function(event) {
+        const modal = document.getElementById('productModal');
+        if (event.target == modal) closeModal();
+    }
+
+    filter('all');
 </script>
 
 </body>
+</html>
+
+</body>
+
 </html>
